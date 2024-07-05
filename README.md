@@ -1,1 +1,0 @@
-# Netflix_DevSecops_GCP
