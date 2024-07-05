@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service 
+metadata:
+  name: netflix-app-lb
+spec:
+  selector:
+    app: netflix-app
+  ports:
+    - port: 6009
+      targetPort: 80
+  type: LoadBalancer
