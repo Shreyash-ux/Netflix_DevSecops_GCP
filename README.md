@@ -704,8 +704,9 @@ That's it! You've successfully installed and set up Grafana to work with Prometh
 
 ## Connect to Kubernetes Cluster on GCP:
     - Using below gcloud command connect to Cluster
+    ```bash
     gcloud container clusters get-credentials <cluster_name> --zone <zone> --project <project_id>
-
+    ```bash
 
 ## Monitor Kubernetes with Prometheus
 
@@ -765,9 +766,10 @@ To deploy an application with ArgoCD, you can follow these steps, which I'll out
 ### Deploy Application with ArgoCD
 
 1. **Install ArgoCD:**
-
+   ```bash
    kubectl create namespace argocd
    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.4.7/manifests/install.yaml
+   ```
    
    Same Exposing the Argocd Service accessible outside the cluster using LoadBalancer.
 
@@ -782,24 +784,26 @@ To deploy an application with ArgoCD, you can follow these steps, which I'll out
     
     For Password use below command in Cluster SSH:
 
+    ```bash
     export ARGO_PWD=`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
     echo $ARGO_PWD
-
-2. **Set Your GitHub Repository as a Source:**
+    ```
+    
+3. **Set Your GitHub Repository as a Source:**
 
    After installing ArgoCD, you need to set up your GitHub repository as a source for your application deployment. This typically involves configuring the connection to your repository and defining the source for your ArgoCD application. The specific steps will depend on your setup and requirements.
    Check below video for Deployment
 
    [![Video Tutorial](https://img.youtube.com/vi/g8X5AoqCJHc/0.jpg)](https://youtu.be/g8X5AoqCJHc)
 
-3. **Create an ArgoCD Application:**
+4. **Create an ArgoCD Application:**
    - `name`: Set the name for your application.
    - `destination`: Define the destination where your application should be deployed.
    - `project`: Specify the project the application belongs to.
    - `source`: Set the source of your application, including the GitHub repository URL, revision, and the path to the application within the repository.
    - `syncPolicy`: Configure the sync policy, including automatic syncing, pruning, and self-healing.
 
-4. **Access your Application**
+5. **Access your Application**
    - Application is be hosted by Load Balancer exposing method.
    - You can access using http://appLB:9001 
 
